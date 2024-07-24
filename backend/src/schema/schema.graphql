@@ -1,0 +1,111 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateEmployeeInput {
+  description: String
+  email: String!
+  experience: String!
+  fileLink: String
+  isActive: Boolean!
+  name: String!
+  password: String!
+  salary: String
+  vertical: String!
+}
+
+input CreateUserInput {
+  email: String!
+  isActive: Boolean!
+  isAdmin: Boolean!
+  name: String!
+  password: String!
+  role: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type EmployeeEntity {
+  createdAt: DateTime!
+  description: String!
+  email: String!
+  experience: String!
+  fileLink: String!
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  password: String!
+  salary: String!
+  updatedAt: DateTime!
+  vertical: String!
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type MetaData {
+  currentPage: Float!
+  itemsPerPage: Float!
+  totalItems: Float!
+  totalPages: Float!
+}
+
+type Mutation {
+  createEmployee(createEmployeeInput: CreateEmployeeInput!): EmployeeEntity!
+  createUser(createUserInput: CreateUserInput!): UserEntity!
+  removeEmployee(id: Int!): EmployeeEntity!
+  removeUser(id: Int!): UserEntity!
+  updateEmployee(updateEmployeeInput: UpdateEmployeeInput!): EmployeeEntity!
+  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
+}
+
+type PaginatedUserOutput {
+  edges: [UserEntity!]
+  metaData: MetaData
+}
+
+type Query {
+  employee(id: Int!): EmployeeEntity!
+  findAllUsers(filters: JSONObject, limit: Int, page: Int): PaginatedUserOutput!
+  findOneUser(id: Int!): UserEntity!
+}
+
+input UpdateEmployeeInput {
+  description: String
+  email: String
+  experience: String
+  fileLink: String
+  id: Int!
+  isActive: Boolean
+  name: String
+  password: String
+  salary: String
+  vertical: String
+}
+
+input UpdateUserInput {
+  email: String
+  id: ID!
+  isActive: Boolean
+  isAdmin: Boolean
+  name: String
+  password: String
+  role: String
+}
+
+type UserEntity {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  isActive: Boolean!
+  isAdmin: Boolean!
+  name: String!
+  password: String!
+  role: String!
+  updatedAt: DateTime!
+}
